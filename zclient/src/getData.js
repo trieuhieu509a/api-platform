@@ -7,6 +7,18 @@ export const getData = (event) => {
 
     axios.get(baseURL + router(event))
         .then(function (response) {
+
+            const orderByName = document.getElementById("order-by-name");
+
+            orderByName.addEventListener("click", getData);
+
+            orderByName.style.display = 'block';
+
+            if ( typeof orderByName.order === 'undefined' )
+                orderByName.order = 'asc';
+            else if ( orderByName.order == 'asc' ) orderByName.order = 'desc'
+            else orderByName.order = 'asc';
+
             pagination(response.data);
             show(response.data['hydra:member']);
             // console.log(response.data);
