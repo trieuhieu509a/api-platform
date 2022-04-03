@@ -1,4 +1,4 @@
-import { getData } from './getData.js';
+import { getData } from './getData';
 export function pagination(response)
 {
     if (typeof response['hydra:view'] == 'undefined') return;
