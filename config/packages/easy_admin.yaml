@@ -1,5 +1,7 @@
 easy_admin:
   site_name: 'Best offers for products'
+  user:
+    name_property_path: 'email'
   entities:
     Product:
       class: App\Entity\Product

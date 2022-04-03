@@ -1,0 +1,27 @@
+==================== install easy admin bundle which server as admin component ============================
+https://symfony.com/doc/current/bundles/EasyAdminBundle/index.html
+composer require admin
+==================== install api platform package ============================
+composer require api
+composer require --dev api-platform/schema-generator ( of not working add "--with-all-dependencies" )
+
+======================== entity property define ============================
+https://developers.google.com/search/docs/advanced/structured-data/product
+https://schema.org/Product
+
+================== generate entity by command ============================
+vendor/bin/schema generate-types src/ config/schema.yaml
+     > bin/console doctrine:database:create
+     > bin/console doctrine:schema:update --force
+
+================== upload bundle ============================
+composer require vich/uploader-bundle
+    > update entity
+        > bin/console doctrine:schema:update --force
+
+================= create auth ( follow create-auth.png ) =====================
+bin/console make:auth
+
+then run
+    > bin/console security:encode-password
+        > copy password add new user in database
