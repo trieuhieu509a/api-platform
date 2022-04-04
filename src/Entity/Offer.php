@@ -9,13 +9,15 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Symfony\Component\Serializer\Annotation\Groups;
+
 /**
  * An offer to transfer some rights to an item or to provide a service — for example, an offer to sell tickets to an event, to rent the DVD of a movie, to stream a TV show over the internet, to repair a motorcycle, or to loan a book.\\n\\nFor \[GTIN\](http://www.gs1.org/barcodes/technical/idkeys/gtin)-related fields, see \[Check Digit calculator\](http://www.gs1.org/barcodes/support/check\_digit\_calculator) and \[validation guide\](http://www.gs1us.org/resources/standards/gtin-validation-guide) from \[GS1\](http://www.gs1.org/).
  *
  * @see http://schema.org/Offer Documentation on Schema.org
  *
  * @ORM\Entity
- * @ApiResource(iri="http://schema.org/Offer")
+ * @ApiResource(iri="http://schema.org/Offer",normalizationContext={"groups"={"read"}},denormalizationContext={"groups"={"write"}})
  */
 class Offer
 {
@@ -35,6 +37,7 @@ class Offer
      * @ApiProperty(iri="http://schema.org/url")
      * @Assert\Url
      * @Assert\NotNull
+     * @Groups({"read","write"})
      */
     private $url;
 
@@ -44,6 +47,7 @@ class Offer
      * @ORM\Column(type="float")
      * @ApiProperty(iri="http://schema.org/price")
      * @Assert\NotNull
+     * @Groups({"read","write"})
      */
     private $price;
 
@@ -53,11 +57,14 @@ class Offer
      * @ORM\Column(type="text")
      * @ApiProperty(iri="http://schema.org/priceCurrency")
      * @Assert\NotNull
+     * @Groups({"read","write"})
      */
     private $priceCurrency;
 
     /**
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="offers")
+     * @ApiProperty(attributes={"fetchEager": false})
+     * @Groups({"write"})
      */
     private $product;
 

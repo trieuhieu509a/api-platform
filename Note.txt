@@ -25,3 +25,12 @@ bin/console make:auth
 then run
     > bin/console security:encode-password
         > copy password add new user in database
+
+================= allow read write in database =====================
+@ApiResource(iri="http://schema.org/Offer",normalizationContext={"groups"={"read"}},denormalizationContext={"groups"={"write"}})
+
+@Groups({"read"}) : for read
+@Groups({"write"}) : for write
+@Groups({"read","write"}) : for read write
+
+@ApiProperty(attributes={"fetchEager": true}) : allow eager load , call only one query
