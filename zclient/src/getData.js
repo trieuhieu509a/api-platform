@@ -9,10 +9,13 @@ export const getData = (event) => {
         .then(function (response) {
 
             const orderByName = document.getElementById("order-by-name");
+            const filetrWithImages = document.getElementById("filter-with-images-only");
 
             orderByName.addEventListener("click", getData);
+            filetrWithImages.addEventListener("click", getData);
 
             orderByName.style.display = 'block';
+            filetrWithImages.style.display = 'block';
 
             if ( typeof orderByName.order === 'undefined' )
                 orderByName.order = 'asc';
