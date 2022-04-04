@@ -34,3 +34,10 @@ then run
 @Groups({"read","write"}) : for read write
 
 @ApiProperty(attributes={"fetchEager": true}) : allow eager load , call only one query
+
+======================= test with rich results ================================
+https://search.google.com/test/rich-results
+    > Ex: https://search.google.com/test/rich-results/result?id=q8N5Fa2iRrxkF8yrPyKdnw
+
+https://developers.google.com/search/docs/advanced/structured-data
+    > https://validator.schema.org/#url=https%3A%2F%2Fwww.obi.pl%2F

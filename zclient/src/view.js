@@ -7,11 +7,9 @@ export function show (data)
     item.innerHTML = '';
     for(var i = 0; i<=data.length - 1; i++)
     {
-        console.log(data)
         if(typeof data[i].image !== 'undefined') var imageUrl = baseURL+'/uploads/images/products/'+data[i].image;
         else var imageUrl = '';
         data_item += '<ul><li><b>'+data[i].name+'</b> - '+data[i].description+'</li><li><img width="100" height="100" src="'+imageUrl+'"></li> <li>Offers</li>';
-        console.log(data_item)
 
         for(var j =0; j<=data[i].offers.length - 1; j++)
         {
