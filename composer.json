@@ -13,6 +13,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.11",
         "easycorp/easyadmin-bundle": "^2.3",
+        "lexik/jwt-authentication-bundle": "^v2.13",
         "nelmio/cors-bundle": "^2.2",
         "phpdocumentor/reflection-docblock": "^5.3",
         "symfony/asset": "5.2.*",

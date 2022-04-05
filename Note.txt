@@ -41,3 +41,16 @@ https://search.google.com/test/rich-results
 
 https://developers.google.com/search/docs/advanced/structured-data
     > https://validator.schema.org/#url=https%3A%2F%2Fwww.obi.pl%2F
+
+======================== JWT authentication  ================================
+bin/console make:controller ApiController => create controller for authenticate magical by symfony
+composer req "lexik/jwt-authentication-bundle"
+mkdir config/jwt
+> openssl genrsa -out config/jwt/private.pem -aes256 4096
+    paste key from .env file > JWT_PASSPHRASE : '255469ecd5fc3b3f247f839d1a950a73'
+> openssl rsa -pubout -in config/jwt/private.pem -out config/jwt/public.pem
+    paste key from .env file > JWT_PASSPHRASE : '255469ecd5fc3b3f247f839d1a950a73'
+
+config/packages/security.yaml
+    "stateless: true" mean not using cookie session
+    "anonymous: true" for auththen and authorization
