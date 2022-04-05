@@ -17,7 +17,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @see http://schema.org/Offer Documentation on Schema.org
  *
  * @ORM\Entity
- * @ApiResource(iri="http://schema.org/Offer",normalizationContext={"groups"={"read"}},denormalizationContext={"groups"={"write"}})
+ * @ApiResource(iri="http://schema.org/Offer",normalizationContext={"groups"={"read"}},denormalizationContext={"groups"={"write"}}, attributes={"pagination_enabled"=false})
  */
 class Offer
 {
