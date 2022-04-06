@@ -54,3 +54,15 @@ mkdir config/jwt
 config/packages/security.yaml
     "stateless: true" mean not using cookie session
     "anonymous: true" for auththen and authorization
+
+bin/console make:entity User
+    > offers
+    > relation
+    > Offers
+    > OneToMany
+    ...
+    bin/console doctrine:schema:update --force
+
+    User.php > offers > orphanRemoval=true : mean when delete user, offers is delete too
+
+    @ORM\JoinColumn(nullable=true) : can create offers first then assign to user later

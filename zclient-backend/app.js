@@ -5,10 +5,7 @@ import {AddOffer} from './actions/Offer/AddOffer.js';
 import {GetOffers} from './actions/Offer/GetOffers.js';
 import {DeleteOffer} from './actions/Offer/DeleteOffer.js';
 
-let login = new Login
-login.getJWTToken()
-// Register.register()
-// login.logout()
+
 // offer
 new Products
 let addOffer = document.getElementById("add-offer")
