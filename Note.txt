@@ -66,3 +66,6 @@ bin/console make:entity User
     User.php > offers > orphanRemoval=true : mean when delete user, offers is delete too
 
     @ORM\JoinColumn(nullable=true) : can create offers first then assign to user later
+
+bin/console make:subscriber
+    > Symfony\Component\HttpKernel\Event\ViewEvent

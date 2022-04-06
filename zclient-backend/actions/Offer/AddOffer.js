@@ -3,6 +3,13 @@ import {baseURL} from '../../src/config.js';
 
 export class AddOffer  {
 
+    constructor()
+    {
+        axios.defaults.headers.common = {
+            'Authorization': 'Bearer ' + localStorage.getItem('jwt_token')
+        }
+    }
+
 
     AddOffer(url,price,priceCurrency,product_id)
     {

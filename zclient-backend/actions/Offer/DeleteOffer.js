@@ -3,6 +3,12 @@ import {baseURL} from '../../src/config.js';
 
 export class DeleteOffer {
 
+    constructor()
+    {
+        axios.defaults.headers.common = {
+            'Authorization': 'Bearer ' + localStorage.getItem('jwt_token')
+        }
+    }
 
     DeleteOffer(delete_url)
     {
