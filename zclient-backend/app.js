@@ -1,9 +1,10 @@
-
+import {Register} from './actions/Register.js';
 import {Products} from './actions/Products.js';
 import {AddOffer} from './actions/Offer/AddOffer.js';
 import {GetOffers} from './actions/Offer/GetOffers.js';
 import {DeleteOffer} from './actions/Offer/DeleteOffer.js';
 
+Register.register()
 // offer
 new Products
 let addOffer = document.getElementById("add-offer")
