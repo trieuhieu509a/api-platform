@@ -17,6 +17,10 @@ export class DeleteOffer extends Login {
             })
             .catch( (error) => {
                 console.log(error);
+                if( error.response.data.code == "401" )
+                {
+                    this.handle401Error()
+                }
             });
     }
 }

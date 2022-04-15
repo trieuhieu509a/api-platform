@@ -1,7 +1,6 @@
 import {baseURL} from '../src/config.js'
 import {email} from '../src/config.js'
 import {password} from '../src/config.js'
-
 export class Login {
 
     constructor(action = null)
@@ -53,6 +52,19 @@ export class Login {
     {
         localStorage.removeItem('jwt_token')
         localStorage.removeItem('user_id')
+    }
+
+    handle401Error()
+    {
+        let p = document.getElementById("needs-login");
+        p.style.display = 'block';
+        let a = document.createElement('a');
+        a.style.color = "#FF0000"
+        let linkText = document.createTextNode("Invalid authorization, click to login");
+        a.appendChild(linkText);
+        a.href = "#"
+        p.appendChild(a);
+        document.body.appendChild(p);
     }
 
 }

@@ -1,7 +1,6 @@
 import {Login} from '../Login.js';
 import {baseURL} from '../../src/config.js';
 
-
 export class AddOffer extends Login  {
 
     constructor(url,price,priceCurrency,product_id)
@@ -33,8 +32,12 @@ export class AddOffer extends Login  {
             .then((response) => {
                 console.log(response);
             }).catch((error) => {
-            console.log(error)
+            if( error.response.data.code == "401" )
+            {
+                this.handle401Error()
+            }
         })
     }
 
 }
+
