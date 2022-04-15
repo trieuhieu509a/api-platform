@@ -1,6 +1,7 @@
 import {baseURL} from '../src/config.js'
 import {email} from '../src/config.js'
 import {password} from '../src/config.js'
+
 export class Login {
 
     constructor(action = null)
@@ -11,6 +12,11 @@ export class Login {
                 eval("this."+action+"()")
             } )
         }
+    }
+
+    login()
+    {
+        this.getJWTToken()
     }
 
     sendTokenHeader()
@@ -25,33 +31,40 @@ export class Login {
 
     getJWTToken() // login
     {
-        let params = {
-            "email": email,
-            "password": password
-        }
+        return new Promise( (resolve) => {
 
-        let config = {
-            headers: {
-                'accept': 'application/json',
+            let params = {
+                "email": email,
+                "password": password
             }
-        }
 
-        axios.post(baseURL+'/authentication_token', params, config)
-            .then((response) => {
-                localStorage.setItem("jwt_token", response.data.token)
-                localStorage.setItem("user_id", response.data.id)
-                // console.log(response.data.token);
-            }).catch((error) => {
-            // console.log(error)
-        })
+            let config = {
+                headers: {
+                    'accept': 'application/json',
+                }
+            }
+
+            axios.post(baseURL+'/authentication_token', params, config)
+                .then((response) => {
+                    localStorage.setItem("jwt_token", response.data.token)
+                    localStorage.setItem("user_id", response.data.id)
+                    // console.log(response.data.token);
+                }).catch((error) => {
+                // console.log(error)
+            })
+            resolve()
+        } )
 
 
     }
 
     logout()
     {
-        localStorage.removeItem('jwt_token')
-        localStorage.removeItem('user_id')
+        return new Promise( (resolve) => {
+            localStorage.removeItem('jwt_token')
+            localStorage.removeItem('user_id')
+            resolve()
+        } )
     }
 
     handle401Error()

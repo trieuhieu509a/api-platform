@@ -5,8 +5,15 @@ import {AddOffer} from './actions/Offer/AddOffer.js';
 import {GetOffers} from './actions/Offer/GetOffers.js';
 import {DeleteOffer} from './actions/Offer/DeleteOffer.js';
 
-let login = new Login
-login.getJWTToken()
+window.onload = () => {
+    let needsLogin = document.getElementById("needs-login")
+    needsLogin.addEventListener("click", () => {
+        let login = new Login
+        login.logout().then( () => login.login() )
+        needsLogin.style.display = "none"
+    });
+}
+
 // offer
 new Products
 let addOffer = document.getElementById("add-offer")
@@ -26,5 +33,6 @@ deleteOffer.addEventListener("click", () => {
     let offer_id = offer.options[offer.selectedIndex].value;
     new DeleteOffer(offer_id);
 });
+
 
 
