@@ -4,8 +4,9 @@ export class GetOffers {
 
     constructor()
     {
-
-        axios.get(baseURL + '/api/offers')
+        let userId = localStorage.getItem('user_id')
+        if(userId == null)  return
+        axios.get(baseURL + '/api/users/'+userId+'/offers')
             .then((response) => {
                 // console.log(response.data['hydra:member']);
                 response.data['hydra:member'].forEach(offer => {
