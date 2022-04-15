@@ -1,18 +1,17 @@
+import {Login} from '../Login.js';
 import {baseURL} from '../../src/config.js';
 
+export class DeleteOffer extends Login {
 
-export class DeleteOffer {
-
-    constructor()
+    constructor(delete_url)
     {
-        axios.defaults.headers.common = {
-            'Authorization': 'Bearer ' + localStorage.getItem('jwt_token')
-        }
+        super('DeleteOffer')
+        this.delete_url = delete_url
     }
 
-    DeleteOffer(delete_url)
+    DeleteOffer()
     {
-        axios.delete(baseURL + delete_url)
+        axios.delete(baseURL + this.delete_url)
             .then((response) => {
                 console.log(response);
             })
@@ -21,3 +20,4 @@ export class DeleteOffer {
             });
     }
 }
+

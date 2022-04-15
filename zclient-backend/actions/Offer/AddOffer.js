@@ -1,22 +1,25 @@
-
+import {Login} from '../Login.js';
 import {baseURL} from '../../src/config.js';
 
-export class AddOffer  {
 
-    constructor()
+export class AddOffer extends Login  {
+
+    constructor(url,price,priceCurrency,product_id)
     {
-        axios.defaults.headers.common = {
-            'Authorization': 'Bearer ' + localStorage.getItem('jwt_token')
-        }
+        super('AddOffer')
+        this.url = url
+        this.price = price
+        this.priceCurrency = priceCurrency
+        this.productID = product_id
     }
 
-    AddOffer(url,price,priceCurrency,product_id)
+    AddOffer()
     {
         let params = {
-            "url": url,
-            "price": price,
-            "priceCurrency": priceCurrency,
-            "product": "api/products/"+product_id
+            "url": this.url,
+            "price": this.price,
+            "priceCurrency": this.priceCurrency,
+            "product": "api/products/"+this.productID
         }
 
         let config = {

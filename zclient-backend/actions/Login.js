@@ -4,6 +4,25 @@ import {password} from '../src/config.js'
 
 export class Login {
 
+    constructor(action = null)
+    {
+        if(action !== null)
+        {
+            this.sendTokenHeader().then( () => {
+                eval("this."+action+"()")
+            } )
+        }
+    }
+
+    sendTokenHeader()
+    {
+        return new Promise ( (resolve) => {
+            axios.defaults.headers.common = {
+                'Authorization': 'Bearer ' + localStorage.getItem('jwt_token')
+            }
+            resolve()
+        } )
+    }
 
     getJWTToken() // login
     {
@@ -33,6 +52,7 @@ export class Login {
     logout()
     {
         localStorage.removeItem('jwt_token')
+        localStorage.removeItem('user_id')
     }
 
 }
