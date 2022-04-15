@@ -28,3 +28,4 @@ deleteOffer.addEventListener("click", () => {
     let deleteOffer = new DeleteOffer();
     deleteOffer.DeleteOffer(offer_id)
 });
+

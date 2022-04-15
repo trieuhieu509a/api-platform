@@ -10,7 +10,6 @@ export class AddOffer  {
         }
     }
 
-
     AddOffer(url,price,priceCurrency,product_id)
     {
         let params = {
