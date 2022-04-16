@@ -10,9 +10,20 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 
+use App\Controller\ResetPasswordController;
+
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ApiResource
+ * @ApiResource(
+ * itemOperations={
+ *     "patch",
+ *     "change_password"={
+ *         "method"="PATCH",
+ *         "path"="/users/{id}/change-password",
+ *         "controller"=ResetPasswordController::class
+ *     }
+ * }
+ * )
  */
 class User implements UserInterface
 {
