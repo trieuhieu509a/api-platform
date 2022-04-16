@@ -4,6 +4,7 @@ import {Products} from './actions/Products.js';
 import {AddOffer} from './actions/Offer/AddOffer.js';
 import {GetOffers} from './actions/Offer/GetOffers.js';
 import {DeleteOffer} from './actions/Offer/DeleteOffer.js';
+import {ResetPassword} from './actions/ResetPassword.js';
 
 window.onload = () => {
     let needsLogin = document.getElementById("needs-login")
@@ -34,5 +35,17 @@ deleteOffer.addEventListener("click", () => {
     new DeleteOffer(offer_id);
 });
 
+
+// password reset
+let resetPasswordRequest = document.getElementById("reset-password-request")
+resetPasswordRequest.addEventListener("click", () => {
+    let resetP = new ResetPassword
+    resetP.makeRequest().then((response) => {
+        if(typeof response !=='undefined')
+        {
+            console.log(response)
+        }
+    })
+});
 
 
