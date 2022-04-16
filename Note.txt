@@ -69,3 +69,7 @@ bin/console make:entity User
 
 bin/console make:subscriber
     > Symfony\Component\HttpKernel\Event\ViewEvent
+
+bin/console debug:event
+
+composer require symfony/swiftmailer-bundle
