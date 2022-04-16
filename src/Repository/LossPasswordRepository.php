@@ -2,30 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\LossPassword;
+use App\Entity\LostPassword;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method LossPassword|null find($id, $lockMode = null, $lockVersion = null)
- * @method LossPassword|null findOneBy(array $criteria, array $orderBy = null)
- * @method LossPassword[]    findAll()
- * @method LossPassword[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method LostPassword|null find($id, $lockMode = null, $lockVersion = null)
+ * @method LostPassword|null findOneBy(array $criteria, array $orderBy = null)
+ * @method LostPassword[]    findAll()
+ * @method LostPassword[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LossPasswordRepository extends ServiceEntityRepository
+class LostPasswordRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, LossPassword::class);
+        parent::__construct($registry, LostPassword::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(LossPassword $entity, bool $flush = true): void
+    public function add(LostPassword $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +37,7 @@ class LossPasswordRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(LossPassword $entity, bool $flush = true): void
+    public function remove(LostPassword $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,7 +46,7 @@ class LossPasswordRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return LossPassword[] Returns an array of LossPassword objects
+    //  * @return LostPassword[] Returns an array of LostPassword objects
     //  */
     /*
     public function findByExampleField($value)
@@ -63,7 +63,7 @@ class LossPasswordRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?LossPassword
+    public function findOneBySomeField($value): ?LostPassword
     {
         return $this->createQueryBuilder('l')
             ->andWhere('l.exampleField = :val')

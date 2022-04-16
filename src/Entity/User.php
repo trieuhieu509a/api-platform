@@ -46,9 +46,9 @@ class User implements UserInterface
     private $offers;
 
     /**
-     * @ORM\OneToOne(targetEntity=LossPassword::class, mappedBy="user", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=LostPassword::class, mappedBy="user", cascade={"persist", "remove"})
      */
-    private $lossPassword;
+    private $lostPassword;
 
     public function __construct()
     {
@@ -166,24 +166,24 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getLossPassword(): ?LossPassword
+    public function getLostPassword(): ?LostPassword
     {
-        return $this->lossPassword;
+        return $this->lostPassword;
     }
 
-    public function setLossPassword(?LossPassword $lossPassword): self
+    public function setLostPassword(?LostPassword $lostPassword): self
     {
         // unset the owning side of the relation if necessary
-        if ($lossPassword === null && $this->lossPassword !== null) {
-            $this->lossPassword->setUser(null);
+        if ($lostPassword === null && $this->lostPassword !== null) {
+            $this->lostPassword->setUser(null);
         }
 
         // set the owning side of the relation if necessary
-        if ($lossPassword !== null && $lossPassword->getUser() !== $this) {
-            $lossPassword->setUser($this);
+        if ($lostPassword !== null && $lostPassword->getUser() !== $this) {
+            $lostPassword->setUser($this);
         }
 
-        $this->lossPassword = $lossPassword;
+        $this->lostPassword = $lostPassword;
 
         return $this;
     }

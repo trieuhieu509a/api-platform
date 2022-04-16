@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\LossPasswordRepository;
+use App\Repository\LostPasswordRepository;
 use Doctrine\ORM\Mapping as ORM;
 use App\Controller\RequestNewPasswordController;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -20,9 +20,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     }
  * }
  * )
- * @ORM\Entity(repositoryClass=LossPasswordRepository::class)
+ * @ORM\Entity(repositoryClass=LostPasswordRepository::class)
  */
-class LossPassword
+class LostPassword
 {
     /**
      * @ORM\Id
@@ -43,7 +43,7 @@ class LossPassword
     private $email;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="lossPassword", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="lostPassword", cascade={"persist", "remove"})
      */
     private $user;
 

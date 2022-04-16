@@ -6,6 +6,8 @@ import {GetOffers} from './actions/Offer/GetOffers.js';
 import {DeleteOffer} from './actions/Offer/DeleteOffer.js';
 import {ResetPassword} from './actions/ResetPassword.js';
 
+let login = new Login
+login.getJWTToken();
 window.onload = () => {
     let needsLogin = document.getElementById("needs-login")
     needsLogin.addEventListener("click", () => {
