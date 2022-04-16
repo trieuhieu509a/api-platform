@@ -39,6 +39,7 @@ class LostPassword
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("write")
      */
     private $email;
 

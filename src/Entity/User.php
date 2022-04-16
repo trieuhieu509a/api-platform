@@ -55,6 +55,11 @@ class User implements UserInterface
         $this->offers = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->email ?? '';
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,7 +111,7 @@ class User implements UserInterface
      */
     public function getPassword(): string
     {
-        return $this->password;
+        return (string) $this->password;
     }
 
     public function setPassword(string $password): self
@@ -117,14 +122,11 @@ class User implements UserInterface
     }
 
     /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
-     *
      * @see UserInterface
      */
-    public function getSalt(): ?string
+    public function getSalt()
     {
-        return null;
+        // not needed when using the "bcrypt" algorithm in security.yaml
     }
 
     /**
@@ -137,7 +139,7 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection<int, Offer>
+     * @return Collection|Offer[]
      */
     public function getOffers(): Collection
     {
@@ -156,7 +158,8 @@ class User implements UserInterface
 
     public function removeOffer(Offer $offer): self
     {
-        if ($this->offers->removeElement($offer)) {
+        if ($this->offers->contains($offer)) {
+            $this->offers->removeElement($offer);
             // set the owning side to null (unless already changed)
             if ($offer->getUser() === $this) {
                 $offer->setUser(null);
@@ -173,17 +176,13 @@ class User implements UserInterface
 
     public function setLostPassword(?LostPassword $lostPassword): self
     {
-        // unset the owning side of the relation if necessary
-        if ($lostPassword === null && $this->lostPassword !== null) {
-            $this->lostPassword->setUser(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($lostPassword !== null && $lostPassword->getUser() !== $this) {
-            $lostPassword->setUser($this);
-        }
-
         $this->lostPassword = $lostPassword;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newUser = null === $lostPassword ? null : $this;
+        if ($lostPassword->getUser() !== $newUser) {
+            $lostPassword->setUser($newUser);
+        }
 
         return $this;
     }
