@@ -5,9 +5,21 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\LossPasswordRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Controller\RequestNewPasswordController;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ * normalizationContext={"groups"={"read"}},denormalizationContext={"groups"={"write"}},
+ * collectionOperations={
+ *     "post",
+ *     "reset_password"={
+ *         "method"="POST",
+ *         "path"="/users/reset-password",
+ *         "controller"=RequestNewPasswordController::class,
+ *     }
+ * }
+ * )
  * @ORM\Entity(repositoryClass=LossPasswordRepository::class)
  */
 class LossPassword
@@ -21,6 +33,7 @@ class LossPassword
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("write")
      */
     private $token;
 
@@ -33,6 +46,11 @@ class LossPassword
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="lossPassword", cascade={"persist", "remove"})
      */
     private $user;
+
+    public function __construct()
+    {
+        $this->token = sha1(random_bytes(12));
+    }
 
     public function getId(): ?int
     {
