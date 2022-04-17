@@ -28,7 +28,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @ORM\Entity
  * @Vich\Uploadable
- * @ApiResource(iri="http://schema.org/Product",normalizationContext={"groups"={"read"}},denormalizationContext={"groups"={"write"}})
+ * @ApiResource(iri="http://schema.org/Product",normalizationContext={"groups"={"read"}},denormalizationContext={"groups"={"write"}},
+ * cacheHeaders={"max_age"=20, "shared_max_age"=20}
+ * )
  * @ApiFilter(SearchFilter::class, properties={"id": "exact", "name": "partial", "description": "partial"})
  * @ApiFilter(OrderFilter::class, properties={"id", "name"}, arguments={"orderParameterName"="order"})
  * @ApiFilter(ExistsFilter::class, properties={"image"})
