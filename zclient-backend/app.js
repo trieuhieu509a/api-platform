@@ -56,7 +56,7 @@ let resetPassword = document.getElementById("reset-password")
 resetPassword.addEventListener("click", () => {
     let resetP = new ResetPassword
     // ... get somehow the token to validate the request ...
-    let token = ''
+    let token = '1d5e3e0a04d32b43a652c6c385e0a81b53a5eab9'
     // ... then:
     resetP.resetPassword(localStorage.getItem('userIdChangesPassword'), token)
     document.getElementById('reset-password').style.display = 'none'
