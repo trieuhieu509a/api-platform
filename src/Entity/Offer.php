@@ -22,7 +22,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *normalizationContext={"groups"={"read"}},denormalizationContext={"groups"={"write"}}, attributes={"pagination_enabled"=false},
  * itemOperations={
  * "get",
- * "delete"={"security"="object.getUser() == user", "security_message"="Sorry, but you are not the offer author."}
+ * "delete"={"security"="object.getUser() == user", "security_message"="Sorry, but you are not the offer author."},
+ * "patch"={"validation_groups"={"patchValidation"}}
+ *     },
+ *     collectionOperations={
+ *         "get",
+ *         "post"={"validation_groups"={"postValidation"}}
  *     }
  *)
  */
@@ -63,20 +68,20 @@ class Offer
      *
      * @ORM\Column(type="text")
      * @ApiProperty(iri="http://schema.org/priceCurrency")
-     * @Assert\NotNull
+     * @Assert\NotBlank(groups={"postValidation"})
      * @Groups({"read","write"})
      */
     private $priceCurrency;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="offers")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="offers")
      * @ApiProperty(attributes={"fetchEager": false})
      * @Groups({"write"})
      */
     private $product;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="offers")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="offers")
      * @ORM\JoinColumn(nullable=true)
      */
     private $user;
@@ -96,7 +101,7 @@ class Offer
         $this->url = $url;
     }
 
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->url;
     }
@@ -122,7 +127,7 @@ class Offer
         $this->priceCurrency = $priceCurrency;
     }
 
-    public function getPriceCurrency(): string
+    public function getPriceCurrency(): ?string
     {
         return $this->priceCurrency;
     }

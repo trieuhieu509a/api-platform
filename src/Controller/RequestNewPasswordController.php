@@ -12,6 +12,7 @@ use App\Event\ResetPasswordRequestEvent;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Exception\CustomException;
 
 class RequestNewPasswordController extends AbstractController
 {
@@ -22,6 +23,7 @@ class RequestNewPasswordController extends AbstractController
 
     public function __invoke(LostPassword $data)
     {
+        throw new CustomException('CustomException');
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository(User::class);
         $user = $repository->findOneBy(['email' => $data->getEmail()]);
