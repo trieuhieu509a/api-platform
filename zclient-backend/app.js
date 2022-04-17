@@ -5,6 +5,7 @@ import {AddOffer} from './actions/Offer/AddOffer.js';
 import {GetOffers} from './actions/Offer/GetOffers.js';
 import {DeleteOffer} from './actions/Offer/DeleteOffer.js';
 import {ResetPassword} from './actions/ResetPassword.js';
+import {Upload} from './actions/Upload.js';
 
 let login = new Login
 login.getJWTToken();
@@ -69,4 +70,21 @@ if(localStorage.getItem('userIdChangesPassword') !== null)
     document.getElementById('reset-password').style.display = 'block'
 }
 
+let upload = document.getElementById("upload-file")
+upload.addEventListener("change", e => {
+
+    let files = e.target.files || e.dataTransfer.files;
+    if (!files.length)
+    {
+        console.log('no files');
+    }
+    let product = document.getElementById("product")
+    let product_id = product.options[product.selectedIndex].value;
+
+    if(product_id == "") return
+    // console.log(files);
+    // console.log(files[0].name)
+    new Upload(files,product_id)
+
+});
 
