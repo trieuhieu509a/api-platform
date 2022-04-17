@@ -45,9 +45,28 @@ resetPasswordRequest.addEventListener("click", () => {
     resetP.makeRequest().then((response) => {
         if(typeof response !=='undefined')
         {
-            console.log(response)
+            localStorage.setItem('userIdChangesPassword',response)
+            document.getElementById('reset-password-request').style.display = 'none'
+            document.getElementById('reset-password').style.display = 'block'
         }
     })
 });
+
+let resetPassword = document.getElementById("reset-password")
+resetPassword.addEventListener("click", () => {
+    let resetP = new ResetPassword
+    // ... get somehow the token to validate the request ...
+    let token = ''
+    // ... then:
+    resetP.resetPassword(localStorage.getItem('userIdChangesPassword'), token)
+    document.getElementById('reset-password').style.display = 'none'
+
+});
+
+if(localStorage.getItem('userIdChangesPassword') !== null)
+{
+    document.getElementById('reset-password-request').style.display = 'none'
+    document.getElementById('reset-password').style.display = 'block'
+}
 
 

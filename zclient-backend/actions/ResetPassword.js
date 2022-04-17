@@ -1,5 +1,6 @@
 import {baseURL} from '../src/config.js'
 import {email} from '../src/config.js'
+import {password} from '../src/config.js'
 
 export class ResetPassword {
 
@@ -24,6 +25,24 @@ export class ResetPassword {
 
             })
 
+    }
+
+    resetPassword(userId, token)
+    {
+        let config = {
+            headers: {
+                "Accept": "application/ld+json",
+                "Content-Type": "application/merge-patch+json"
+            }
+        }
+
+        axios.patch(baseURL+'/api/users/'+userId+'/change-password?token='+token+'&password='+password, {}, config)
+            .then((response) => {
+                console.log(response);
+                localStorage.removeItem('userIdChangesPassword')
+            }).catch((error) => {
+            console.log(error);
+        })
     }
 
 }
