@@ -77,3 +77,8 @@ composer require phpunit/phpunit
 composer require --dev symfony/test-pack http-client justinrainbow/json-schema
 
 php vendor/bin/simple-phpunit
+
+public function __toString()
+    {
+        return $this->email ?? '';
+    }

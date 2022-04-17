@@ -17,9 +17,9 @@ if ($_SERVER['APP_DEBUG']) {
 }
 
 $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
-if ('prod' === $kernel->getEnvironment()) {
-    $kernel = new CacheKernel($kernel);
-}
+//if ('prod' === $kernel->getEnvironment()) {
+//    $kernel = new CacheKernel($kernel);
+//}
 //error_log($kernel->getLog());
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
