@@ -16,6 +16,7 @@
         "lexik/jwt-authentication-bundle": "^v2.13",
         "nelmio/cors-bundle": "^2.2",
         "phpdocumentor/reflection-docblock": "^5.3",
+        "phpunit/phpunit": "^8.5",
         "sensio/framework-extra-bundle": "^6.2",
         "symfony/asset": "5.2.*",
         "symfony/console": "5.2.*",
@@ -86,6 +87,11 @@
     "require-dev": {
         "api-platform/schema-generator": "^2.2",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "justinrainbow/json-schema": "^5.2",
+        "symfony/browser-kit": "5.2.*",
+        "symfony/css-selector": "5.2.*",
+        "symfony/http-client": "5.2.*",
+        "symfony/phpunit-bridge": "^6.0",
         "symfony/stopwatch": "5.2.*",
         "symfony/web-profiler-bundle": "5.2.*"
     }

@@ -73,3 +73,7 @@ bin/console make:subscriber
 bin/console debug:event
 
 composer require symfony/swiftmailer-bundle
+composer require phpunit/phpunit
+composer require --dev symfony/test-pack http-client justinrainbow/json-schema
+
+php vendor/bin/simple-phpunit
