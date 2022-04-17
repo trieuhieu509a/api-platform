@@ -1,8 +1,14 @@
 import {baseURL} from '../../src/config.js';
+import {Login} from '../Login.js';
 
-export class GetOffers {
+export class GetOffers extends Login  {
 
     constructor()
+    {
+        super('GetOffers')
+    }
+
+    GetOffers()
     {
         let userId = localStorage.getItem('user_id')
         if(userId == null)  return
@@ -28,3 +34,4 @@ export class GetOffers {
         select.appendChild(option);
     }
 }
+
