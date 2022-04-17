@@ -89,7 +89,7 @@ class Product
     /**
      * @ORM\OneToMany(targetEntity=Offer::class, mappedBy="product",cascade={"remove","persist"})
      * @Groups({"read","write"})
-     * @ApiProperty(attributes={"fetchEager": true})
+     * @ApiProperty(attributes={"fetch_eager": true})
      */
     private $offers;
 
